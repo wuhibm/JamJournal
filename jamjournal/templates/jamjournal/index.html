@@ -1,0 +1,64 @@
+{% extends "jamjournal/layout.html" %} 
+{% load static %} 
+{% block body %} 
+    {% if title %}
+        <h1>{{title}}</h1>
+    {% endif %}
+    <div class="album-container">
+        {% for album in albums %}
+            <div class="album">
+                <img src="{{album.images.0.url}}" alt="Album Cover for {{album.name}}">
+                <div class="card-content">
+                    <h5>{{album.name}}</h5>
+                    <p>{%for artist in album.artists%} {% if forloop.last %}{{artist.name}}{% else %}{{artist.name}}, {% endif %}{% endfor %}</p>
+                    <a href="{% url 'album' album.id %}" class="btn">See Album</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <nav aria-label="Page navigation example" >
+        <ul class="pagination justify-content-center">
+          
+            {% if page_num != 1 %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{previous}}" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+            {% else %}
+                <li class="page-item disabled">
+                    <a class="page-link" href="" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+            {% endif %}
+          {% for page in num_pages %}
+            {% if forloop.counter == page_num %}
+                <li class="page-item active"><a class="page-link" href="?page={{forloop.counter}}">{{forloop.counter}}</a></li>
+            {% else %}
+                <li class="page-item"><a class="page-link" href="?page={{forloop.counter}}">{{forloop.counter}}</a></li>
+            {% endif %}
+          {% endfor %}
+          {% if page_num != 6 %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{page_num|add:1}}" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+          {% else %}
+            <li class="page-item disabled">
+                <a class="page-link" href="?page={{page_num|add:1}}" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+          {% endif %}
+
+        </ul>
+    </nav>
+
+
+{% endblock %}
+{% block script %}
+    <link href="{% static 'jamjournal/card.css' %}" rel="stylesheet">
+{% endblock %}

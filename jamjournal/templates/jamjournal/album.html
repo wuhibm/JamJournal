@@ -1,0 +1,75 @@
+{% extends "jamjournal/layout.html" %} 
+{% load static %} 
+{% block body %} 
+
+
+<div class="album-container">
+    <h1>{{album.name}}</h1>
+    <h3>{%for artist in album.artists%} {% if forloop.last %}{{artist.name}}{% else %}{{artist.name}}, {% endif %}{% endfor %}</h3>
+    <h3>Average Grade: {{average}}</h3>
+    <p>Realeased: {{album.release_date}}</p>
+    <img src="{{album.images.0.url}}" alt="Album Cover for {{album.name}}">
+
+    <br>
+    
+    {% for review in reviews%}
+        <div class="review" id="{{review.id}}">
+            <a href="{% url 'view_review' review.id %}">
+                <h4>{{review.reviewer}}:</h4>
+            </a>
+            <h5>Grade: {{review.grade}}</h5>    
+            <p>{{review.content}}</p>
+            <div>
+                {% if review.reviewer.id == user.id %}
+                    <button class="edit" id="edit-{{review.id}}">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                            <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                            <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
+                        </svg>
+                    </button>
+                    <button class="delete" id="delete-{{review.id}}">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
+                            <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5"/>
+                        </svg>
+                    </button>
+                {% else %}
+                    <button class="like unliked" data-review="{{review.id}}" id="like-button{{review.id}}">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
+                        </svg>
+                    </button>
+                    <button class="reply" id="reply-{{review.id}}">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-reply-fill" viewBox="0 0 16 16">
+                            <path d="M5.921 11.9 1.353 8.62a.72.72 0 0 1 0-1.238L5.921 4.1A.716.716 0 0 1 7 4.719V6c1.5 0 6 0 7 8-2.5-4.5-7-4-7-4v1.281c0 .56-.606.898-1.079.62z"/>
+                        </svg>
+                    </button>
+                {% endif %}
+            </div>
+            
+            <br>
+            <small id="likes{{review.id}}">
+                {% if review.likes.count != 1 %}
+                {{review.likes.count}} likes
+                {% else %}
+                {{review.likes.count}} like
+                {% endif %}
+            </small>
+
+        </div>
+    {% empty %}
+        <p>This album doesn't have reviews yet</p>
+    {% endfor %}
+    {% if user.is_authenticated %}
+        <a href="{% url 'review' album.id %}" class="btn btn-outline-primary">Leave a review</a>
+    {% endif %}
+
+</div>
+    
+
+
+{% endblock %}
+
+{% block script %}
+    <link href="{% static 'jamjournal/album.css' %}" rel="stylesheet">
+    <script src="{% static 'jamjournal/review.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends "jamjournal/layout.html" %} {% load static %} {% block body %}
+
+<div class="album-container">
+  <h1>Write a review</h1>
+
+  <p>{{album.name}}</p>
+  <img src="{{album.images.0.url}}" alt="" />
+</div>
+<form method="post">
+  {% csrf_token %}
+  <fieldset>
+    <legend>Grade the album</legend>
+    <div class="grade-choices">
+      {% for choice in choices %}
+      <div class="grade-choice">
+        {% if grade == choice %}
+        <input type="radio" id="{{choice}}" name="grade" value="{{choice}}" checked />
+        {% else %}
+        <input type="radio" id="{{choice}}" name="grade" value="{{choice}}" />
+        {% endif %}
+        <label for="{{choice}}">{{choice}}</label>
+      </div>
+      {% endfor %}
+    </div>
+  </fieldset>
+  <textarea
+    name="content"
+    placeholder="Review"
+    maxlength="15000"
+    class="form-control"
+    rows="3">{% if content %}{{content}}{% endif %}</textarea>
+  <br />
+  <input type="submit" class="btn btn-outline-primary" />
+</form>
+
+{% endblock %} {% block script %}
+<link href="{% static 'jamjournal/album.css' %}" rel="stylesheet" />
+<link href="{% static 'jamjournal/review.css' %}" rel="stylesheet" />
+{% endblock %}

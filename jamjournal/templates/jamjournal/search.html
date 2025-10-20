@@ -1,0 +1,55 @@
+{% extends "jamjournal/layout.html" %}
+{% load static %}
+{% block body %}
+
+<h1>Artists</h1>
+<div class="artist-container">
+
+    {% for artist in artists %}
+    <div class="artist">
+        {% if artist.images.0.url %}
+        <img src="{{artist.images.0.url}}" alt="The Featured Photo for {{artist.name}}">
+        {% else %}
+        <img src="https://community.spotify.com/t5/image/serverpage/image-id/25294i2836BD1C1A31BDF2?v=v2">
+        {% endif %}
+        <h5>{{artist.name}}</h5>
+        <a class="btn" href="{% url 'artist' artist.id %}">See artist</a>
+    </div>
+    {% endfor %}
+
+</div>
+{% if user_results %}
+<h1>Users</h1>
+{% endif %}
+<div class="artist-container">
+    
+    {% for user in users%}
+    <div class="user">
+        <a class="btn" href="{% url 'profile' user.id %}">{{user.username}}</a>
+    </div>
+    {% endfor %}
+</div>
+
+<h1>Albums</h1>
+<div class="album-container">
+    {% for album in albums %}
+    <div class="album">
+        {% if album.images.0.url %}
+        <img src="{{album.images.0.url}}" alt="Album Cover for {{album.name}}">
+        {% else %}
+        <img src="https://community.spotify.com/t5/image/serverpage/image-id/25294i2836BD1C1A31BDF2?v=v2">
+        {% endif %}
+        <div class="card-content">
+            <h5>{{album.name}}</h5>
+            <p>{%for artist in album.artists%} {% if forloop.last %}{{artist.name}}{% else %}{{artist.name}}, {% endif%}{% endfor %}</p>
+            <a href="{% url 'album' album.id %}" class="btn">See Album</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
+{% block script %}
+<link href="{% static 'jamjournal/card.css' %}" rel="stylesheet">
+<link href="{% static 'jamjournal/search.css' %}" rel="stylesheet">
+{% endblock %}

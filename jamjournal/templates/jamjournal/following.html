@@ -1,0 +1,20 @@
+{% extends "jamjournal/reviews.html" %} 
+{% load static %} 
+
+{% block title%}
+Following - JamJournal
+{% endblock %}
+
+{% block page %}
+    <h1>Following</h1>
+{% endblock %}
+
+{% block script %}
+    <link href="{% static 'jamjournal/reviews.css' %}" rel="stylesheet">
+    <script src="{% static 'jamjournal/review.js' %}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelector("#following-page").classList.add("active");
+        });
+    </script>
+{% endblock %}

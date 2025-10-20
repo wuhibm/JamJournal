@@ -1,0 +1,70 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>{% block title %}Jam Journal{% endblock %}</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+  
+  <!-- <link href="{% static 'jamjournal/styles.css' %}" rel="stylesheet"> -->
+  <link href="{% static 'jamjournal/global.css' %}" rel="stylesheet">
+  {% block script %}
+  <script src="{% static 'jamjournal/nav.js' %}"></script>
+  {% endblock %}
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" href="{% url 'index' %}">JamJournal</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav mr-auto">
+        {% if user.is_authenticated %}
+        <li class="nav-item" id="all-reviews-page">
+          <a class="nav-link" href="{% url 'reviews' %}">All Reviews</a>
+        </li>
+        <li class="nav-item" id="my-reviews-page">
+          <a class="nav-link" href="{% url 'my_reviews' %}">My Reviews</a>
+        </li>
+        <li class="nav-item" id="following-page">
+          <a class="nav-link" href="{% url 'following' %}">Following</a>
+        </li>
+        <li class="nav-item" id="profile-page">
+          <a class="nav-link" href=" {% url 'profile' user.id %} ">My Profile</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
+        </li>
+        {% else %}
+        <li class="nav-item" id="login-page">
+          <a class="nav-link" href="{% url 'login' %}">Log In</a>
+        </li>
+        <li class="nav-item" id="register-page">
+          <a class="nav-link" href="{% url 'register' %}">Register</a>
+        </li>
+        {% endif %}
+      </ul>
+      <form class="form-inline my-2 my-lg-0" method="post" action="{% url 'search' %}">
+        {% csrf_token %}
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="query" />
+        <button class="btn btn-outline-light my-2 my-sm-0" type="submit">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search"
+            viewBox="0 0 16 16">
+            <path
+              d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+          </svg>
+        </button>
+      </form>
+    </div>
+  </nav>
+
+  <div class="container">{% block body %} {% endblock %}</div>
+</body>
+
+</html>

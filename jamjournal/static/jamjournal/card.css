@@ -1,0 +1,60 @@
+.album-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.album {
+    border: solid rgb(146, 146, 146) 1px;
+    transition-duration: 0.3s;
+    background-color: #f0f0f0;
+    width: 325px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+    margin: 20px;
+}
+
+.album:hover {
+    transition-duration: 0.3s;
+    background-color: rgb(216, 216, 216);
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.album img {
+    width: 100%;
+    height: auto;
+}
+
+.card-content {
+    padding: 16px;
+    text-align: center;
+}
+
+.card-content h5 {
+    margin-bottom: 8px;
+}
+
+.btn {
+    transition-duration: 0.3s;
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #007bff;
+    text-decoration: none;
+    border-radius: 4px;
+    color: #fff;
+}
+
+.card-content .btn {
+    margin-top: 15px;
+}
+
+.artist .btn {
+    margin-bottom: 10px;
+}
+
+.btn:hover {
+    transition-duration: 0.3s;
+    color: #007bff;
+    background-color: #fff;
+}

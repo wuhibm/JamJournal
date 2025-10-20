@@ -1,0 +1,43 @@
+.artist-container {
+
+    max-height: fit-content;
+    display: flex;
+    align-items: center;
+    overflow-x: scroll;
+    overflow-x: auto;
+    padding: 1em;
+    scrollbar-color: #007bff #d8d8d8;
+    scroll-behavior: smooth;
+}
+
+.user {
+    margin: 0 auto;
+}
+
+.btn {
+    margin: 0 0.5em;
+}
+
+.artist {
+    width: 200px;
+    height: fit-content;
+    flex-shrink: 0;
+    margin: 5px;
+    text-align: center;
+    background-color: #d4e4f0;
+    border-radius: 5px;
+    overflow: hidden;
+    border: solid rgb(146, 146, 146) 1px;
+}
+
+.artist:hover {
+    transition-duration: 0.3s;
+    background-color: rgb(216, 216, 216);
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.artist img {
+    width: 100%;
+    height: auto;
+    max-height: 200px;
+}

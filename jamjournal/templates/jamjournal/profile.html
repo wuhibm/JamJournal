@@ -1,0 +1,35 @@
+{% extends "jamjournal/reviews.html" %} 
+{% load static %} 
+
+{% block title%}
+Your Profile - JamJournal
+{% endblock %}
+
+
+{% block page %} 
+    <h1>{{username}}</h1>
+    <div class="numbers-container">
+        <p id="followers">Followers: {{followers}}</p>
+        <p id="following">Following: {{following}}</p>
+    </div>
+    {% if flag %}
+    <button id="follow" class="btn btn-outline-primary">
+        {% if usrFollowing %}Unfollow{% else %}Follow{% endif %}
+    </button>
+    {% endif %}
+    <h1>Reviews</h1>
+{% endblock %}
+
+{% block script %}
+    <link href="{% static 'jamjournal/reviews.css' %}" rel="stylesheet">
+    <link href="{% static 'jamjournal/profile.css' %}" rel="stylesheet">
+    <script src="{% static 'jamjournal/profile.js' %}"></script>
+    <script src="{% static 'jamjournal/review.js' %}"></script>
+    {% if not flag %}
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelector("#profile-page").classList.add("active");
+        });
+    </script> 
+    {% endif %}
+{% endblock %}

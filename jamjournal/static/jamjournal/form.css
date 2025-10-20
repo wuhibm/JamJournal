@@ -1,0 +1,22 @@
+.form-container {
+    margin: 10vh auto 0;
+    background-color: #007bff;
+    padding: 2em 2em 4em;
+    border-radius: 0.8em;
+    color: white;
+    text-align: left;
+}
+
+.form-container>a {
+
+    color: white;
+}
+
+.form-container>h1 {
+    margin-left: 0;
+    margin-bottom: 2em;
+}
+
+form {
+    margin: 1em 0;
+}

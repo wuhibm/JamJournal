@@ -1,0 +1,105 @@
+.album-container {
+    text-align: center;
+    margin-top: 50px;
+}
+
+img {
+    width: 325px;
+    height: auto;
+    margin-bottom: 15px;
+    border-radius: 5px;
+}
+
+
+h5 {
+    margin-left: 0;
+}
+
+.review {
+    width: 100%;
+    transition-duration: 0.3s;
+    border-radius: 5px;
+    border: 2px solid rgb(118, 118, 118);
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    text-align: left;
+}
+
+.review:hover {
+    transition-duration: 0.3s;
+    background-color: rgb(238, 238, 238);
+}
+
+button {
+    all: unset;
+}
+
+svg {
+    width: 2em;
+}
+
+.unliked {
+    transition-duration: 0.3s;
+    color: #212529;
+}
+
+.unliked:hover {
+    transition-duration: 0.3s;
+    color: #ff3232;
+    opacity: 0.5;
+}
+
+.liked {
+    transition-duration: 0.3s;
+    color: #ff5c5c;
+}
+
+.liked:hover {
+    transition-duration: 0.3s;
+    color: #ff7676;
+    opacity: 0.5;
+}
+
+.reply {
+    transition-duration: 0.3s;
+    color: #212529;
+}
+
+.reply:hover {
+    transition-duration: 0.3s;
+    color: blue;
+    opacity: 0.8;
+}
+
+.edit {
+    transition-duration: 0.3s;
+}
+
+.edit:hover {
+    transition-duration: 0.3s;
+    color: blue;
+    opacity: 0.8;
+}
+
+.delete {
+    transition-duration: 0.3s;
+}
+
+.delete:hover {
+    transition-duration: 0.3s;
+    color: red;
+    opacity: 0.8;
+}
+
+a {
+    color: #000;
+}
+
+a:hover {
+    color: #000;
+}
+
+.reply-form {
+    margin-bottom: 5px;
+}
