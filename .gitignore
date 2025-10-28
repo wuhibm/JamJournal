@@ -6,3 +6,6 @@ __pycache__/
 *.pyc
 *.log
 *.pot
+/data
+/static
+capstone/staticfiles

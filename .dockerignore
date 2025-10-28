@@ -1,0 +1,33 @@
+# Envirnments
+.env
+.env*
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+*/env/
+*/venv/
+*.env
+*.env.*
+
+# Python cache files
+*__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.sqlite3
+# Django stuff:
+*.log
+local_settings.py
+db.sqlite3
+media/
+
+# Git
+.git
+.git/
+.gitignore
+
+# Docker
+.docker
