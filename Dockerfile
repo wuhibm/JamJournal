@@ -44,5 +44,5 @@ EXPOSE 8000
 # RUN chmod +x /app/entrypoint.prod.sh
 RUN python manage.py collectstatic --noinput
 
-#Run the entrypoint script
+
 CMD ["gunicorn", "--bind", "0.0.0.0:8000", "--workers", "3", "capstone.wsgi:application"]
