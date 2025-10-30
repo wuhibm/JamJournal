@@ -59,10 +59,10 @@
 
 
         <div class="right">
-            <h2>{{review.album.name}}</h2>
-            <h3>{% for artist in review.album.artists %} {% if forloop.last %}{{artist.name}}{% else %}{{artist.name}}, {% endif %}{% endfor %}</h3>
+            <h2><a class="review-link" href="{% url 'view_review' review.review.id %}">{{review.album.name}}</a></h2>
+            <h3>{% for artist in review.album.artists %} {% if forloop.last %} <a class="review-link" href="{% url 'artist' artist.id %}">{{artist.name}}</a> {% else %} <a class="review-link" href="{% url 'artist' artist.id %}">{{artist.name}}<a/>, {% endif %}{% endfor %}</h3>
             <h4>{{review.album.release_date|slice:"0:4"}}</h4>
-            <a class="user-link" href="{% url 'view_review' review.review.id %}">
+            <a class="review-link" href="{% url 'profile' review.review.reviewer.id %}">
                 <h4>{{review.review.reviewer}}:</h4>
             </a>
             <p>{{review.review.content}}</p>

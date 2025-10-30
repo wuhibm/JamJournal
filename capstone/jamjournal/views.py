@@ -53,7 +53,6 @@ def index(request):
     url = f"https://api.spotify.com/v1/browse/new-releases/?limit={limit}&offset={offset}"
     headers = get_auth_header()
     result = get(url, headers=headers)
-    print(result)
     json_result = json.loads(result.content)
     return render(request, "jamjournal/index.html", {
         "albums" : json_result["albums"]["items"],
@@ -166,7 +165,6 @@ def review(request, album_id):
         user = User.objects.get(username=request.user.username)
         content = request.POST["content"]
         grade = request.POST["grade"]
-        print(grade)
         if len(content) < 1000:
             Review.objects.create(album=album_id, content=content,grade=grade,reviewer=user)
             return HttpResponseRedirect(reverse("reviews"))
@@ -363,9 +361,8 @@ def delete_review(request, review_id):
 
 def sendEmail(request, user, to_email):
     mail_subject = "Confirm your email"
-    print("About to send mail")
     message = f"Hi {user.username} \n Please click on the link below to confirm your registration: \n {"https" if request.is_secure() else "http"}://{get_current_site(request).domain}/activate/{urlsafe_base64_encode(force_bytes(user.pk))}/{account_activation_token.make_token(user)}"
-    print("Sending Email")
+    print(get_current_site(request))
     email = send_mail(mail_subject, message, "jamjournal613@gmail.com",[to_email], fail_silently=False)
     return email
 

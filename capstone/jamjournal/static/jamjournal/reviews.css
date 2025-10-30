@@ -10,6 +10,25 @@
     background-color: #d4e4f0;
 }
 
+.review-link {
+    text-decoration: underline;
+}
+
+.review-link:hover {
+    color: #2e4053;
+}
+
+
+div.review img {
+    opacity: 0.85;
+    transition-duration: 0.3s;
+}
+
+div.review img:hover {
+    opacity: 1;
+    transition-duration: 0.3s;
+}
+
 .left>h2 {
     color: white;
 }
