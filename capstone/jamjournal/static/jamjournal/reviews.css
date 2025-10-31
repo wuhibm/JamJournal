@@ -18,6 +18,9 @@
     color: #2e4053;
 }
 
+.empty-message {
+    margin-top: 35vh;
+}
 
 div.review img {
     opacity: 0.85;
