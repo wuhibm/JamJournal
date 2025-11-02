@@ -25,3 +25,11 @@ h5 {
 .user-link {
     text-decoration: underline;
 }
+
+.username {
+    color: #3d4875;
+}
+
+.review-header {
+    margin-top: 2em;
+}

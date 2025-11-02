@@ -16,8 +16,11 @@ Your Profile - JamJournal
     <button id="follow" class="btn btn-outline-primary">
         {% if usrFollowing %}Unfollow{% else %}Follow{% endif %}
     </button>
+    <h2 class="review-header">Reviews:</h2>
+    {% else %}
+    <h2 class="review-header">Your Reviews:</h2>
     {% endif %}
-    <h1>Reviews</h1>
+    
 {% endblock %}
 
 {% block script %}

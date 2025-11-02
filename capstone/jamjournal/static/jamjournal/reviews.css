@@ -23,7 +23,7 @@
 }
 
 div.review img {
-    opacity: 0.85;
+    opacity: 0.7;
     transition-duration: 0.3s;
 }
 
@@ -107,26 +107,29 @@ svg {
 
 .reply {
     transition-duration: 0.3s;
+    color: #a8c7fa;
 }
 
 .reply:hover {
     transition-duration: 0.3s;
-    color: #a8c7fa;
+    color: #3b3bff;
     opacity: 0.8;
 }
 
 .edit {
     transition-duration: 0.3s;
+    color: #a8c7fa;
 }
 
 .edit:hover {
     transition-duration: 0.3s;
-    color: #a8c7fa;
+    color: #3b3bff;
     opacity: 0.8;
 }
 
 .delete {
     transition-duration: 0.3s;
+    color: #f36d6d;
 }
 
 .delete:hover {
