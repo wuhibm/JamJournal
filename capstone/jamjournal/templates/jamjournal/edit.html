@@ -1,0 +1,41 @@
+{% extends "jamjournal/layout.html" %} 
+{% load static %} 
+
+{% block title%}
+Edit Profile - JamJournal
+{% endblock %}
+
+{% block body %} 
+    <div class="profile-container">
+        <img class="profile-picture" src="{% if profile_picture %}{{profile_picture.url}}{% else %}{% static 'jamjournal/default_profile.jpg' %}{% endif %}" alt="Profile Picture">
+        <div class="profile-info">
+            <div class="profile-header">
+            <h1 class="edit-title">{{username}}</h1>
+            </div>
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="profile_picture">Profile Picture:</label>
+                    <input type="file" class="form-control-file" id="profile_picture" name="profile_picture" accept="image/*">
+                    <label for="username" class="mt-2">Username:</label>
+                    <input type="text" autocomplete="username" class="form-control" id="username" name="username" value="{{ username }}" >
+                </div>
+                <button type="submit" class="btn btn-primary mt-2">Save Changes</button>
+            </form>
+            <a href="{% url "delete_account" %}" class="delete btn btn-danger mt-2">Delete Account</a>
+        </div>
+    </div>
+{% endblock %}
+
+{% block script %}
+    <link href="{% static 'jamjournal/profile.css' %}" rel="stylesheet">
+    <link href="{% static 'jamjournal/edit_profile.css' %}" rel="stylesheet">
+    <script src="{% static 'jamjournal/profile.js' %}"></script>
+    {% if not flag %}
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelector("#profile-page").classList.add("active");
+        });
+    </script> 
+    {% endif %}
+{% endblock %}

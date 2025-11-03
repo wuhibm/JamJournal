@@ -7,15 +7,28 @@ Your Profile - JamJournal
 
 
 {% block page %} 
-    <h1>{{username}}</h1>
-    <div class="numbers-container">
-        <p id="followers">Followers: {{followers}}</p>
-        <p id="following">Following: {{following}}</p>
+    <div class="profile-container">
+        <img class="profile-picture" src="{% if profile_picture %}{{ profile_picture.url }}{% else %}{% static 'jamjournal/default_profile.jpg' %}{% endif %}" alt="Profile Picture">
+        <div class="profile-info">
+            <div class="profile-header">
+            <h1 class="profile-title">{{username}}</h1>
+            {% if flag %}
+                <button id="follow" class="btn btn-outline-primary">
+                    {% if usrFollowing %}Unfollow{% else %}Follow{% endif %}
+                </button>
+            {% else %}
+                <a href="{% url 'edit_profile' %}" class="btn btn-outline-primary">Edit Profile</a>
+            {% endif %}
+            </div>
+            <div class="numbers-container">
+                <p id="followers">Followers: {{followers}}</p>
+                <p id="following">Following: {{following}}</p>
+                <p id="num-reviews">Reviews: {{number_of_reviews}}</p>
+            </div>
+            
+        </div>
     </div>
     {% if flag %}
-    <button id="follow" class="btn btn-outline-primary">
-        {% if usrFollowing %}Unfollow{% else %}Follow{% endif %}
-    </button>
     <h2 class="review-header">Reviews:</h2>
     {% else %}
     <h2 class="review-header">Your Reviews:</h2>

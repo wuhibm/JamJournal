@@ -1,0 +1,90 @@
+.album-container {
+    margin-block: 1.25rem;
+    display: flex;
+}
+
+a {
+    color: inherit;
+}
+
+h5,
+h6,
+p {
+    margin: 0;
+}
+
+.btn {
+    margin: 1rem;
+}
+
+.album-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.review-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.reviewer-info {
+    display: flex;
+    align-items: center;
+}
+
+.profile-picture {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    margin: 0.6rem 0.6rem 0.6rem 0;
+}
+
+.reply-profile-picture {
+    width: 1.2rem;
+    height: 1.2rem;
+    border-radius: 50%;
+    margin: 0.2rem 0.5rem 0.2rem 0;
+}
+
+img.album-cover {
+    width: 300px;
+    height: 300px;
+    border-radius: 5px;
+    margin: 0.5rem;
+}
+
+.replier-info {
+    display: flex;
+    align-items: center;
+}
+
+.review-text {
+    text-align: left;
+    font-size: 1.25em;
+}
+
+.review-form {
+    background-color: #b5dcf9;
+    margin-bottom: 1rem;
+}
+
+.reply-container {
+    text-align: left;
+    border: 1px solid #ccc;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+}
+
+@media (max-width:770px) {
+    .album-container {
+        flex-direction: column;
+        align-items: center;
+        background-color: #d6edff;
+        border: #b5dcf9 2px solid;
+        border-radius: 0.5rem;
+        padding: 1rem;
+    }
+}

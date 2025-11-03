@@ -10,8 +10,17 @@
     background-color: #d4e4f0;
 }
 
-.review-link {
+a {
+    color: inherit;
+}
+
+.review-link,
+.dark-review-link {
     text-decoration: underline;
+}
+
+.dark-review-link:hover {
+    color: rgb(202, 224, 255);
 }
 
 .review-link:hover {
@@ -22,27 +31,10 @@
     margin-top: 35vh;
 }
 
-div.review img {
-    opacity: 0.7;
-    transition-duration: 0.3s;
-}
-
-div.review img:hover {
-    opacity: 1;
-    transition-duration: 0.3s;
-}
-
 .left>h2 {
     color: white;
 }
 
-a {
-    color: #000;
-}
-
-a:hover {
-    color: #000;
-}
 
 .left {
     padding: 0.6em;
@@ -64,6 +56,32 @@ a:hover {
     width: 150px;
     margin: 1em;
     border: #f8d8f8 1px solid;
+    opacity: 0.7;
+    transition-duration: 0.3s;
+}
+
+.album-cover:hover {
+    opacity: 1;
+    transition-duration: 0.3s;
+    box-shadow: 0 0 7px #f8d8f8;
+}
+
+.release-date {
+    color: #555555;
+}
+
+@media (max-width: 580px) {
+    .review {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .left {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 1em;
+    }
+
 }
 
 button {
@@ -105,23 +123,12 @@ svg {
     opacity: 0.5;
 }
 
-.reply {
+.blue-btn {
     transition-duration: 0.3s;
     color: #a8c7fa;
 }
 
-.reply:hover {
-    transition-duration: 0.3s;
-    color: #3b3bff;
-    opacity: 0.8;
-}
-
-.edit {
-    transition-duration: 0.3s;
-    color: #a8c7fa;
-}
-
-.edit:hover {
+.blue-btn:hover {
     transition-duration: 0.3s;
     color: #3b3bff;
     opacity: 0.8;

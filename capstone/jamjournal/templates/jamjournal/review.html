@@ -1,10 +1,16 @@
 {% extends "jamjournal/layout.html" %} {% load static %} {% block body %}
 
 <div class="album-container">
-  <h1>Write a review</h1>
+
+  {% if content %}
+    <h1>Edit your review</h1>
+  {% else %}
+    <h1>Write a review</h1>
+  {% endif %}
+  
 
   <p>{{album.name}}</p>
-  <img src="{{album.images.0.url}}" alt="" />
+  <img src="{{album.images.0.url}}" alt="Album Cover for {{album.name}}" />
 </div>
 <form method="post">
   {% csrf_token %}

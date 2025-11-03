@@ -20,6 +20,7 @@ from django.utils.encoding import force_bytes, force_str
 from django.core.mail import send_mail
 from .tokens import account_activation_token
 
+# Spotify API 
 load_dotenv()
 client_id = os.getenv("CLIENT_ID")
 client_secret = os.getenv("CLIENT_SECRET")
@@ -43,6 +44,8 @@ def get_token():
 def get_auth_header():
     token = get_token()
     return {"Authorization" : "Bearer "+token}
+
+
 
 # Create your views here.
 def index(request):
@@ -218,6 +221,7 @@ def view_review(request, review_id):
             "review": review,
             "album": json_result,
             "replies": replies,
+            "reply_count": len(replies)
         })
 
 @login_required        
@@ -309,9 +313,29 @@ def profile(request, id):
         "username": user.username,
         "followers": followers,
         "following":following,
+        "number_of_reviews": len(reviews),
         "flag":flag,
         "usrFollowing": usrFollowing,
+        "profile_picture": user.profile_picture
     })
+
+def edit_profile(request):
+    currUser = User.objects.get(username=request.user.username)
+    print(currUser)
+    print(currUser.profile_picture)
+    if request.method == "POST":
+        profile_picture = request.FILES.get("profile_picture")
+        if profile_picture:
+            currUser.profile_picture = profile_picture
+        username = request.POST["username"]
+        currUser.username = username
+        currUser.save()
+        return HttpResponseRedirect(reverse("profile", kwargs={'id':currUser.id}))
+    else:
+        return render(request, "jamjournal/edit.html", {
+            "username": currUser.username,
+            "profile_picture": currUser.profile_picture
+        })
 
 def get_reviews(user):
     #TODO: pagination, adjust for rate limit
@@ -439,6 +463,12 @@ def login_view(request):
 
 def logout_view(request):
     logout(request)
+    return HttpResponseRedirect(reverse("index"))
+
+def delete_account(request):
+    currUser = User.objects.get(username=request.user.username)
+    logout(request)
+    currUser.delete()
     return HttpResponseRedirect(reverse("index"))
 
 

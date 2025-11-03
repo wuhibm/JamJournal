@@ -21,7 +21,11 @@ FROM python:3.13-slim
 
 RUN useradd -m -r appuser && \
     mkdir /app && \
-    chown -R appuser /app
+    chown -R appuser /app && \
+    mkdir -p /vol/web/static && \
+    mkdir -p /vol/web/media &&\
+    chown -R appuser /vol && \
+    chmod -R 755 /vol 
 
 #Copy python dependencies from builder stage    
 COPY --from=builder /usr/local/lib/python3.13/site-packages/ /usr/local/lib/python3.13/site-packages/
@@ -39,6 +43,7 @@ USER appuser
 
 #Expose port 8000
 EXPOSE 8000
+
 
 # Make entrypoint script executable by modifying its permissions
 # RUN chmod +x /app/entrypoint.prod.sh

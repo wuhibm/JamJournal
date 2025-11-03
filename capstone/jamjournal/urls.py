@@ -19,6 +19,8 @@ urlpatterns = [
     path("edit/<int:review_id>", views.edit, name="edit"),
     path("view_review/<int:review_id>", views.view_review, name="view_review"),
     path("activate/<uidb64>/<token>", views.activate, name="activate"),
+    path("edit_profile", views.edit_profile, name="edit_profile"),
+    path("delete_account", views.delete_account, name="delete_account"),
 
     #API endpoints
     path('user', views.user, name="user"),

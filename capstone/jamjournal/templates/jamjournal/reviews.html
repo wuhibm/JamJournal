@@ -16,10 +16,10 @@
             <a href="{% url 'album' review.album.id %}">
                 <img class="album-cover" src="{{review.album.images.0.url}}" alt="Album Cover for {{review.album.name}}" >
             </a>
-            <h2>Grade: {{review.review.grade}}</h2>
+            <h2><a class="dark-review-link" href="{% url 'view_review' review.review.id %}"> Grade: {{review.review.grade}} </a></h2>
             {% if review.review.reviewer.id == user.id %}
                 <div class="button-container">
-                    <button class="edit" id="edit-{{review.review.id}}">
+                    <button class="blue-btn edit" id="edit-{{review.review.id}}">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                             <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
                             <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
@@ -39,7 +39,7 @@
                             <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
                         </svg>
                     </button>
-                    <button class="reply" id="reply-{{review.review.id}}">
+                    <button class="blue-btn reply" id="reply-{{review.review.id}}">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-reply-fill" viewBox="0 0 16 16">
                             <path d="M5.921 11.9 1.353 8.62a.72.72 0 0 1 0-1.238L5.921 4.1A.716.716 0 0 1 7 4.719V6c1.5 0 6 0 7 8-2.5-4.5-7-4-7-4v1.281c0 .56-.606.898-1.079.62z"/>
                         </svg>
@@ -59,9 +59,9 @@
 
 
         <div class="right">
-            <h2><a class="review-link" href="{% url 'view_review' review.review.id %}">{{review.album.name}}</a></h2>
+            <h2><a class="review-link" href="{% url 'album' review.album.id  %}">{{review.album.name}}</a></h2>
             <h3>{% for artist in review.album.artists %} {% if forloop.last %} <a class="review-link" href="{% url 'artist' artist.id %}">{{artist.name}}</a> {% else %} <a class="review-link" href="{% url 'artist' artist.id %}">{{artist.name}}<a/>, {% endif %}{% endfor %}</h3>
-            <h4>{{review.album.release_date|slice:"0:4"}}</h4>
+            <h4 class="release-date">{{review.album.release_date|slice:"0:4"}}</h4>
             <a class="review-link" href="{% url 'profile' review.review.reviewer.id %}">
                 <h4>{{review.review.reviewer}}:</h4>
             </a>

@@ -26,11 +26,6 @@ h5 {
     text-align: left;
 }
 
-.review:hover {
-    transition-duration: 0.3s;
-    background-color: rgb(238, 238, 238);
-}
-
 button {
     all: unset;
 }
@@ -102,4 +97,67 @@ a:hover {
 
 .reply-form {
     margin-bottom: 5px;
+}
+
+.profile-picture {
+    width: 2.3rem;
+    height: 2.3rem;
+    border-radius: 50%;
+    margin: 0.2rem 0.3rem 0.2rem 0;
+}
+
+.reviewer-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+h4 {
+    margin: 0;
+}
+
+.unliked {
+    transition-duration: 0.3s;
+    color: #ebaaeb;
+}
+
+
+.unliked:hover {
+    transition-duration: 0.3s;
+    color: #ff3232;
+    opacity: 0.5;
+}
+
+.liked {
+    transition-duration: 0.3s;
+    color: #ff5c5c;
+
+}
+
+.liked:hover {
+    transition-duration: 0.3s;
+    color: #ff7676;
+    opacity: 0.5;
+}
+
+.blue-btn {
+    transition-duration: 0.3s;
+    color: #57acff;
+}
+
+.blue-btn:hover {
+    transition-duration: 0.3s;
+    color: #3b3bff;
+    opacity: 0.8;
+}
+
+.delete {
+    transition-duration: 0.3s;
+    color: #f36d6d;
+}
+
+.delete:hover {
+    transition-duration: 0.3s;
+    color: red;
+    opacity: 0.8;
 }

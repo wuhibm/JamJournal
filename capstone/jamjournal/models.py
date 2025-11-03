@@ -4,6 +4,7 @@ from django.contrib.auth.models import AbstractUser
 # Create your models here.
 class User(AbstractUser):
     email = models.EmailField(blank=False, unique=True)
+    profile_picture = models.ImageField(upload_to='profile_pictures/', null=True, blank=True)
 
 class Review(models.Model):
     GRADE_CHOICES = {

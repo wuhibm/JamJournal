@@ -1,14 +1,27 @@
 {% extends "jamjournal/layout.html" %} {% load static %} 
 {% block body %}
-    <div class="album-container">
-    <h1><a class="user-link" href="{% url 'profile' review.reviewer.id %}">{{review.reviewer}}'s</a> review of {{album.name}}</h1>
-    <img src="{{album.images.0.url}}" alt="" />
-    </div>
-    <div class="review">
-        <p>{{review.content}}</p>
-    </div>
+    
+        <div class="album-container">
+            <img class="album-cover" src="{{album.images.0.url}}" alt="Album Cover for {{album.name}}" />
+            <div class="album-content">
+                
+                <h3><a class="user-link" href="{% url 'album' album.id  %}">{{album.name}}</a></h3>
+                <h4>{% for artist in album.artists %}{% if forloop.last %}<a class="user-link" href="{% url 'artist' artist.id %}">{{artist.name}}</a>{% else %}<a class="user-link" href="{% url 'artist' artist.id %}">{{artist.name}}</a>,{% endif %}{% endfor %}</h4>
+                <h4>{{review.grade}}</h4>
+                <h5>Released: {{album.release_date}}</h5>
+                
+                <small>Reviewed on: {{review.timestamp|date:"M d, Y"}}</small>
+            </div>
+        </div>
+        <div class="review-container">
+            <div class="reviewer-info">
+                <img class="profile-picture" src="{% if review.reviewer.profile_picture %}{{ review.reviewer.profile_picture.url }}{% else %}{% static 'jamjournal/default_profile.jpg' %}{% endif %}" alt="Profile Picture">
+                <h3><a class="user-link" href="{% url 'profile' review.reviewer.id %}">{{review.reviewer}}</a>:</h3>
+            </div>
+            <p class="review-text">{{review.content}}</p>
+        </div>
+    
     <br>
-    <h5>Replies:</h5>
     {% if user.is_authenticated %}
     <form method="post">
     {% csrf_token %}
@@ -16,19 +29,24 @@
         name="content"
         placeholder="Reply"
         maxlength="500"
-        class="form-control reply-form"
+        class="review-form form-control reply-form"
         rows="3"></textarea>
     <input type="submit" class="btn btn-outline-primary" />
     </form>
     {% endif %}
+    <h5>Replies({{reply_count}}):</h5>
+    
     <br>
     {% for reply in replies %}
-    <div class="review">
-        <h6>{{reply.replier}}:</h6>
+    <div class="reply-container">
+        <div class="replier-info">
+            <img class="reply-profile-picture" src="{% if reply.replier.profile_picture %}{{ reply.replier.profile_picture.url }}{% else %}{% static 'jamjournal/default_profile.jpg' %}{% endif %}" alt="Profile Picture">
+            <h6>{{reply.replier}}:</h6>
+        </div>
         <p>{{reply.content}}</p>
     </div>
     {% endfor %}
 {% endblock %} 
 {% block script %}
-    <link href="{% static 'jamjournal/album.css' %}" rel="stylesheet" />
+    <link href="{% static 'jamjournal/view_review.css' %}" rel="stylesheet" />
 {% endblock %}
