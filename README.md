@@ -103,7 +103,9 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Wuhib Mezemir - wuhib.mezemir@gmail.com <a href="https://linkedin.com/in/wuhib-mezemir">LinkedIn</a>
+Wuhib Mezemir - 
+wuhib.mezemir@gmail.com 
+<a href="https://linkedin.com/in/wuhib-mezemir">LinkedIn</a>
 
 Project Link: [https://github.com/wuhibm/JamJournal](https://github.com/wuhibm/JamJournal)
 
