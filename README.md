@@ -26,7 +26,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-JamJournal (https://TODO.todo)
+JamJournal (http://jamjournal.net)
 
 There are many music reiew sites out there But I find them to not usually be the easiest to get started with using. They can be overwhelming and difficult to adjust to so I created a simple app with two main functions:
 * View and review albums
