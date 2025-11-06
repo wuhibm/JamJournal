@@ -71,6 +71,7 @@ The app should be running where you have chosen to host it
 
 - [x] Add basic social features (like, follow)
 - [x] Add profile editting
+- [ ] Transition to https using ssl certificate
 - [ ] Let users connect their spotify accounts and review albums directly from their library
 - [ ] Let apple music users do the same
 - [ ] Transition to a React frontend and Django REST framework backend
